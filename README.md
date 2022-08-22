@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+Code examples for concepts discussed in series of titled "DDD in Ruby on Rails", available at https://www.visuality.pl/posts/introduction-to-ddd-in-ruby-on-rails
 
-* Ruby version
+## Setup
 
-* System dependencies
+1. clone repo
+2. run `bundle`
+3. rub `rails db:prepare`
 
-* Configuration
+## Testing
 
-* Database creation
+This repo has no testing framework. It contains interactive tests, which can be run against your development database.
 
-* Database initialization
+Test scripts can be run using rails runner. Example:
 
-* How to run the test suite
+```sh
+$ rails r test/customer/model/orm_driven.rb
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The test are not aimed to give 100% code coverage (or in fact - no coverage at all). They are here to give you an easy entry point to the implemented concepts. Run them and adjust to see the logic in action.
