@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_22_175123) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_22_215136) do
   create_table "customers_orm_driven_customers", force: :cascade do |t|
     t.string "phone"
     t.string "email"
@@ -30,6 +30,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_22_175123) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_customers_orm_driven_rates_on_customer_id"
     t.index ["rated_customer_id"], name: "index_customers_orm_driven_rates_on_rated_customer_id"
+  end
+
+  create_table "customers_with_person_model_customers", force: :cascade do |t|
+    t.string "phone"
+    t.string "city"
+    t.string "street"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customers_with_person_model_persons", force: :cascade do |t|
+    t.string "email"
+    t.string "name"
+    t.date "birthday"
+    t.integer "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customers_with_person_model_rates", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "rated_customer_id"
+    t.integer "mark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customers_with_person_model_rates_on_customer_id"
+    t.index ["rated_customer_id"], name: "index_customers_with_person_model_rates_on_rated_customer_id"
   end
 
   create_table "customers_with_vo_and_identity_and_behavior_customers", force: :cascade do |t|
@@ -81,6 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_22_175123) do
   end
 
   add_foreign_key "customers_orm_driven_rates", "customers_orm_driven_customers", column: "rated_customer_id"
+  add_foreign_key "customers_with_person_model_rates", "customers_with_person_model_customers", column: "rated_customer_id"
   add_foreign_key "customers_with_vo_and_identity_and_behavior_rates", "customers_with_vo_and_identity_and_behavior_customers", column: "rated_customer_id"
   add_foreign_key "customers_with_vo_rates", "customers_with_vo_customers", column: "rated_customer_id"
 end

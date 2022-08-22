@@ -19,9 +19,7 @@ module Customer
         private
 
         def birthday_in_the_past
-          return unless birthday
-
-          errors.add(:birthday, "is in the past") if birthday.future?
+          errors.add(:birthday, "is in the future") if birthday&.future?
         end
       end
     end
