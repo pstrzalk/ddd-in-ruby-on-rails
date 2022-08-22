@@ -10,11 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_21_195526) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_22_115002) do
+  create_table "customer__customers", force: :cascade do |t|
+    t.string "phone"
+    t.string "email"
+    t.string "name"
+    t.string "city"
+    t.string "street"
+    t.date "birthday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customer__rates", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "rated_customer_id"
+    t.integer "mark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer__rates_on_customer_id"
+    t.index ["rated_customer_id"], name: "index_customer__rates_on_rated_customer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "customer__rates", "customer__customers", column: "rated_customer_id"
 end
