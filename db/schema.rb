@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_22_215136) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_07_084108) do
+  create_table "car_catalog_cars", force: :cascade do |t|
+    t.string "registration_number"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "customers_orm_driven_customers", force: :cascade do |t|
     t.string "phone"
     t.string "email"
